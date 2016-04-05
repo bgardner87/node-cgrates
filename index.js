@@ -208,13 +208,13 @@ var CGRates = function(url) {
 
 module.exports = CGRates;
 
-var cgRates = new CGRates("http://172.20.4.13:2080/jsonrpc");
+// var cgRates = new CGRates("http://172.20.4.13:2080/jsonrpc");
 
-var data = {Tenant: "reper.io", Account: "f1ed1023-b6a0-4140-ad4c-5475006f86d3"};
+// var data = {Tenant: "domain.com", Account: "f1ed1023-b6a0-4140-ad4c-5475006f86d3"};
 
-cgRates.getAccount(data).then(function(result) {
-	console.log(result);
-}, function(err) {
-	console.log("ERROR");
-	console.log(err);
-});
+// cgRates.getAccount(data).then(function(result) {
+// 	console.log(result);
+// }, function(err) {
+// 	console.log("ERROR");
+// 	console.log(err);
+// });
