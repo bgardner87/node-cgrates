@@ -1,0 +1,28 @@
+{
+  "name": "node-cgrates",
+  "version": "1.0.0",
+  "description": "Node wrapper for CGRates JSON RPC API",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha tests.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bgardner87/node-cgrates.git"
+  },
+  "keywords": [
+    "cgrates"
+  ],
+  "author": "Brad Gardner",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bgardner87/node-cgrates/issues"
+  },
+  "homepage": "https://github.com/bgardner87/node-cgrates#readme",
+  "dependencies": {
+    "needle": "^1.0.0"
+  },
+  "devDependencies": {
+    "mocha": "^2.4.5"
+  }
+}
