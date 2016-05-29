@@ -10,7 +10,27 @@ var CGRates = function(url) {
 	this.url = url;
 	this.needle = needle;
 
+	this.getRequest = function(data) {
+		var promise = new Promise(function(resolve, reject) {
+			self.needle.post(self.url, data, {json:true}, function(err, response) {
+				if (err) {
+					return reject(err);
+				}
 
+				if (response.statusCode != 200) {
+					return reject(new Error(response.body));
+				}
+
+				if (response.body.error) {
+					return reject(new Error(response.body.error));
+				}
+
+				resolve(response.body.result);
+			});
+		});
+
+		return promise;
+	};
 
 	// {
 	// 	"id": 1,
@@ -36,25 +56,7 @@ var CGRates = function(url) {
 			data.id = request_id;
 		}
 
-		var promise = new Promise(function(resolve, reject) {
-			self.needle.post(self.url, data, {json:true}, function(err, response) {
-				if (err) {
-					return reject(err);
-				}
-
-				if (response.statusCode != 200) {
-					return reject(new Error(response.body));
-				}
-
-				if (response.body.error) {
-					return reject(new Error(response.body.error));
-				}
-
-				resolve(response.body.result);
-			});
-		});
-		
-		return promise;
+		return self.getRequest(data);
 	};
 
 	// {
@@ -83,25 +85,7 @@ var CGRates = function(url) {
 			data.id = request_id;
 		}
 
-		var promise = new Promise(function(resolve, reject) {
-			self.needle.post(self.url, data, {json:true}, function(err, response) {
-				if (err) {
-					return reject(err);
-				}
-
-				if (response.statusCode != 200) {
-					return reject(new Error(response.body));
-				}
-
-				if (response.body.error) {
-					return reject(new Error(response.body.error));
-				}
-
-				resolve(response.body.result);
-			});
-		});
-		
-		return promise;
+		return self.getRequest(data);
 	};
 
 	// {
@@ -135,25 +119,7 @@ var CGRates = function(url) {
 			data.id = request_id;
 		}
 
-		var promise = new Promise(function(resolve, reject) {
-			self.needle.post(self.url, data, {json:true}, function(err, response) {
-				if (err) {
-					return reject(err);
-				}
-
-				if (response.statusCode != 200) {
-					return reject(new Error(response.body));
-				}
-
-				if (response.body.error) {
-					return reject(new Error(response.body.error));
-				}
-
-				resolve(response.body.result);
-			});
-		});
-		
-		return promise;
+		return self.getRequest(data);
 	};
 
 	// {
@@ -182,30 +148,12 @@ var CGRates = function(url) {
 			data.id = request_id;
 		}
 
-		var promise = new Promise(function(resolve, reject) {
-			self.needle.post(self.url, data, {json:true}, function(err, response) {
-				if (err) {
-					return reject(err);
-				}
-
-				if (response.statusCode != 200) {
-					return reject(new Error(response.body));
-				}
-
-				if (response.body.error) {
-					return reject(new Error(response.body.error));
-				}
-
-				resolve(response.body.result);
-			});
-		});
-		
-		return promise;
+		return self.getRequest(data);
 	};
 
 	// {
 	// 	"id": 1,
-	// 	"method": "ApierV2.SetBalance",
+	// 	"method": "ApierV1.SetBalance",
 	// 	"params": [{
 	// 		"Tenant": "domain.com",
 	// 		"Account": "5c1b474f-3a10-48d8-89a4-395a94a95a3c",
@@ -248,30 +196,12 @@ var CGRates = function(url) {
 			data.id = request_id;
 		}
 
-		var promise = new Promise(function(resolve, reject) {
-			self.needle.post(self.url, data, {json:true}, function(err, response) {
-				if (err) {
-					return reject(err);
-				}
-
-				if (response.statusCode != 200) {
-					return reject(new Error(response.body));
-				}
-
-				if (response.body.error) {
-					return reject(new Error(response.body.error));
-				}
-
-				resolve(response.body.result);
-			});
-		});
-		
-		return promise;
+		return self.getRequest(data);
 	};
 
 	// {
 	// 	"id": 1,
-	// 	"method": "ApierV2.AddBalance",
+	// 	"method": "ApierV1.AddBalance",
 	// 	"params": [{
 	// 		"Tenant": "domain.com",
 	// 		"Account": "5c1b474f-3a10-48d8-89a4-395a94a95a3c",
@@ -306,30 +236,12 @@ var CGRates = function(url) {
 			data.id = request_id;
 		}
 
-		var promise = new Promise(function(resolve, reject) {
-			self.needle.post(self.url, data, {json:true}, function(err, response) {
-				if (err) {
-					return reject(err);
-				}
-
-				if (response.statusCode != 200) {
-					return reject(new Error(response.body));
-				}
-
-				if (response.body.error) {
-					return reject(new Error(response.body.error));
-				}
-
-				resolve(response.body.result);
-			});
-		});
-		
-		return promise;
+		return self.getRequest(data);
 	};
 
 	// {
 	// 	"id": 1,
-	// 	"method": "ApierV2.DebitBalance",
+	// 	"method": "ApierV1.DebitBalance",
 	// 	"params": [{
 	// 		"Tenant": "domain.com",
 	// 		"Account": "5c1b474f-3a10-48d8-89a4-395a94a95a3c",
@@ -364,30 +276,12 @@ var CGRates = function(url) {
 			data.id = request_id;
 		}
 
-		var promise = new Promise(function(resolve, reject) {
-			self.needle.post(self.url, data, {json:true}, function(err, response) {
-				if (err) {
-					return reject(err);
-				}
-
-				if (response.statusCode != 200) {
-					return reject(new Error(response.body));
-				}
-
-				if (response.body.error) {
-					return reject(new Error(response.body.error));
-				}
-
-				resolve(response.body.result);
-			});
-		});
-		
-		return promise;
+		return self.getRequest(data);
 	};
 
 	// {
 	// 	"id": 1,
-	// 	"method": "ApierV2.RemoveBalances",
+	// 	"method": "ApierV1.RemoveBalances",
 	// 	"params": [{
 	// 		"Tenant": "domain.com",
 	// 		"Account": "5c1b474f-3a10-48d8-89a4-395a94a95a3c",
@@ -417,26 +311,63 @@ var CGRates = function(url) {
 			data.id = request_id;
 		}
 
-		var promise = new Promise(function(resolve, reject) {
-			self.needle.post(self.url, data, {json:true}, function(err, response) {
-				if (err) {
-					return reject(err);
-				}
-
-				if (response.statusCode != 200) {
-					return reject(new Error(response.body));
-				}
-
-				if (response.body.error) {
-					return reject(new Error(response.body.error));
-				}
-
-				resolve(response.body.result);
-			});
-		});
-		
-		return promise;
+		return self.getRequest(data);
 	};
+
+	// {
+	// 	"id": 1,
+	// 	"method": "CdrsV2.ProcessExternalCdr",
+	// 	"params": [{
+	// 		"TOR": "*sms",
+	// 		"AccId": "9d92882f-0d55-47ab-ad97-c3f6f2fa532b",
+	// 		"Direction": "out",
+	// 		"RequestType": "pseudoprepaid",
+	// 		"Destination": "5555551112",
+	// 		"Usage": "1",
+	// 		"PDD": "0",
+	// 		"Tenant": "domain.com",
+	// 		"Account": "5c1b474f-3a10-48d8-89a4-395a94a95a3c"
+	// 	}]
+	// }
+	this.createCdr = function(options, request_id) {
+		if (!options.Tenant) {
+			throw new Error("Tenant is required");
+		}
+
+		if (!options.Account) {
+			throw new Error("Account is required");
+		}
+
+		var data = {
+			method: "CdrsV2.ProcessExternalCdr",
+			params: [options]
+		};
+
+		if (request_id) {
+			data.id = request_id;
+		}
+
+		return self.getRequest(data);
+	};
+
+	// {
+	// 	"id": 1,
+	// 	"method": "ApierV2.GetCdrs",
+	// 	"params": [{
+	// 		"RunIDs": ["*default"],
+	// 		"Tenant": "domain.com"
+	// 	}]
+	// }
+	this.getCdrs = function(options, request_id) {};
+
+	// {
+	// 	"id": 1,
+	// 	"method": "ApierV2.RemCdrs",
+	// 	"params": [{
+	// 		"CgrIds": ["95c7e5ccf93f207c64150b0b0b74bfb184c48cb9"]
+	// 	}]
+	// }
+	this.deleteCdrs = function(options, request_id) {};
 
 	return this;
 };
