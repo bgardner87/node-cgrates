@@ -204,7 +204,7 @@ describe("CGRates", function() {
 					done();
 				}, function(err) {
 					done(new Error("Promise rejected on valid request and response."));
-				})
+				});
 			});
 		});
 
@@ -228,7 +228,7 @@ describe("CGRates", function() {
 					done(new Error("Promise resolved on failed http request."));
 				}, function(err) {
 					done();
-				})
+				});
 			});
 
 			it("should reject if the http status code is not 200", function(done) {
@@ -242,7 +242,7 @@ describe("CGRates", function() {
 					done(new Error("Promise resolved on failed http request."));
 				}, function(err) {
 					done();
-				})
+				});
 			});
 
 			it("should reject if the http response body has an error from CG Rates", function(done) {
@@ -256,7 +256,7 @@ describe("CGRates", function() {
 					done(new Error("Promise resolved on failed http request."));
 				}, function(err) {
 					done();
-				})
+				});
 			});
 
 			it("should resolve with the request body result", function(done) {
@@ -270,8 +270,62 @@ describe("CGRates", function() {
 					done();
 				}, function(err) {
 					done(new Error("Promise rejected on valid request and response."));
-				})
+				});
 			});
 		});
 	});
-})
+	describe("Balances", function() {
+		describe("Create or Update Balance", function() {
+			it("should require tenant", function() {
+				assert.throws(() => {cgRates.createOrUpdateBalance({})}, function(err){return err.message === "Tenant is required";}, "Didn't throw exception when tenant is missing.");
+			});
+
+			it("should require account", function() {
+				assert.throws(() => {cgRates.createOrUpdateBalance({Tenant:'123'})}, function(err){return err.message === "Account is required";}, "Didn't throw exception when tenant is missing.");
+			});
+
+			it("should require balance id or uuid", function() {
+				assert.throws(() => {cgRates.createOrUpdateBalance({Tenant:'123', Account: '123'})}, function(err){return err.message === "BalanceId or BalanceUUID is required.";}, "Didn't throw exception when BalanceId and BalanceUUID is missing.");
+			});
+		});
+		describe("Add Balance", function() {
+			it("should require tenant", function() {
+				assert.throws(() => {cgRates.addBalance({})}, function(err){return err.message === "Tenant is required";}, "Didn't throw exception when tenant is missing.");
+			});
+
+			it("should require account", function() {
+				assert.throws(() => {cgRates.addBalance({Tenant:'123'})}, function(err){return err.message === "Account is required";}, "Didn't throw exception when tenant is missing.");
+			});
+
+			it("should require balance id or uuid", function() {
+				assert.throws(() => {cgRates.addBalance({Tenant:'123', Account: '123'})}, function(err){return err.message === "BalanceId or BalanceUUID is required.";}, "Didn't throw exception when BalanceId and BalanceUUID is missing.");
+			});
+		});
+		describe("Debit Balance", function() {
+			it("should require tenant", function() {
+				assert.throws(() => {cgRates.debitBalance({})}, function(err){return err.message === "Tenant is required";}, "Didn't throw exception when tenant is missing.");
+			});
+
+			it("should require account", function() {
+				assert.throws(() => {cgRates.debitBalance({Tenant:'123'})}, function(err){return err.message === "Account is required";}, "Didn't throw exception when tenant is missing.");
+			});
+
+			it("should require balance id or uuid", function() {
+				assert.throws(() => {cgRates.debitBalance({Tenant:'123', Account: '123'})}, function(err){return err.message === "BalanceId or BalanceUUID is required.";}, "Didn't throw exception when BalanceId and BalanceUUID is missing.");
+			});
+		});
+		describe("Remove Balance", function() {
+			it("should require tenant", function() {
+				assert.throws(() => {cgRates.removeBalance({})}, function(err){return err.message === "Tenant is required";}, "Didn't throw exception when tenant is missing.");
+			});
+
+			it("should require account", function() {
+				assert.throws(() => {cgRates.removeBalance({Tenant:'123'})}, function(err){return err.message === "Account is required";}, "Didn't throw exception when tenant is missing.");
+			});
+
+			it("should require balance id or uuid", function() {
+				assert.throws(() => {cgRates.removeBalance({Tenant:'123', Account: '123'})}, function(err){return err.message === "BalanceId or BalanceUUID is required.";}, "Didn't throw exception when BalanceId and BalanceUUID is missing.");
+			});
+		});
+	});
+});
